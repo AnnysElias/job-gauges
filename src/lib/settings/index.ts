@@ -37,7 +37,7 @@ export const renderSettings = () => {
             `,
         )
         .addSeperator()
-        .addHeader('h2', 'test ')
+        .addHeader('h2', 'Magic Stack Bars ')
         .addSeperator()
         .addHeader('h3', 'Change Active Gauge')
         .addButton(
