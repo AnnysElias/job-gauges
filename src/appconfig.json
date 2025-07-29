@@ -1,9 +1,9 @@
 {
 	"appName": "JobGauges",
 	"description": "FFXIV-inspired gauges for Runescape combat",
-	"appUrl": "https://annyselias.github.io/job-gauges/index.html",
-	"configUrl": "https://annyselias.github.io/job-gauges/appconfig.json",
-	"iconUrl": "https://annyselias.github.io/job-gauges/icon.png",
+	"appUrl": "https://ironaraxxor.github.io/job-gauges/dist/index.html",
+	"configUrl": "https://ironaraxxor.github.io/job-gauges/dist/appconfig.json",
+	"iconUrl": "https://ironaraxxor.github.io/job-gauges/dist/icon.png",
 	"defaultWidth": 400,
 	"defaultHeight": 400,
 	"minWidth": 150,
