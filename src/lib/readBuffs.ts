@@ -42,6 +42,7 @@ const buffsImages = a1lib.webpackImages({
     greaterSunshine: require('../asset/data/buffs/magic/greater-sunshine.data.png'),
     bloodTithe: require('../asset/data/buffs/magic/blood-tithe.data.png'),
     glacialEmbrace: require('../asset/data/buffs/magic/glacial-embrace.data.png'),
+    corruption: require('../asset/data/buffs/magic/corruption.data.png'),
     instability: require('../asset/data/buffs/magic/instability.data.png'),
     soulfire: require('../asset/data/debuffs/soulfire.data.png'),
     tsunami: require('../asset/data/buffs/magic/critical-strike.data.png'),
@@ -207,11 +208,12 @@ retryOperation(findDebuffsBar, 3, 10000)
     });
 
 export async function readBuffs() {
-    if (!buffReader.pos) {
-        return;
-    }
+    try {
+        if (!buffReader.pos) {
+            return;
+        }
 
-    const { gaugeData, necromancy } = store.getState();
+        const { gaugeData, necromancy } = store.getState();
 
     updateBuffData(
         buffReader,
@@ -321,16 +323,33 @@ export async function readBuffs() {
                 (time) => updateMagicAbility(time, false, 'Tsunami'),
                 false,
             );
-            updateStackData(
+            updateBuffData(
+                buffReader,
                 buffsImages.bloodTithe,
                 30,
-                (active) => updateSpell('bloodTithe', active),
+                (time) => updateSpell('bloodTithe', time),
+                false,
             );
-            updateStackData(
+            updateBuffData(
+                buffReader,
                 buffsImages.glacialEmbrace,
                 30,
-                (active) => updateSpell('glacialEmbrace', active),
+                (time) => updateSpell('glacialEmbrace', time),
+                false,
             );
+            // Safe corruption buff reading with error isolation
+            try {
+                updateBuffData(
+                    buffReader,
+                    buffsImages.corruption,
+                    50,
+                    (time) => updateSpell('corruption', time),
+                    false,
+                );
+            } catch (error) {
+                console.error('Error reading corruption buff:', error);
+                // Continue with other buffs even if corruption fails
+            }
             updateBuffData(
                 debuffReader,
                 buffsImages.soulfire,
@@ -373,6 +392,10 @@ export async function readBuffs() {
     }
 
     return buffReader;
+    } catch (error) {
+        console.error('Error in readBuffs:', error);
+        // Continue execution even if buff reading fails
+    }
 }
 
 function updateBuffData(
@@ -385,11 +408,13 @@ function updateBuffData(
     ) => void,
     greater: boolean,
 ): boolean {
-    const buffs = buffReader.read();
+    try {
+        const buffs = buffReader.read();
 
-    if (!buffs) {
-        throw Error('Failed to read buffs for updateBuffData.');
-    }
+        if (!buffs) {
+            console.warn('Failed to read buffs for updateBuffData.');
+            return false;
+        }
 
     let foundBuff = false;
     for (const buff of buffs) {
@@ -429,6 +454,10 @@ function updateBuffData(
     }
 
     return foundBuff;
+    } catch (error) {
+        console.error('Error in updateBuffData:', error);
+        return false;
+    }
 }
 
 function updateStackData(
@@ -436,11 +465,13 @@ function updateStackData(
     threshold: number,
     updateCallbackFn: (time: number) => unknown,
 ): boolean {
-    const buffs = buffReader.read();
+    try {
+        const buffs = buffReader.read();
 
-    if (!buffs) {
-        throw Error('Failed to read buffs for updateStackData.');
-    }
+        if (!buffs) {
+            console.warn('Failed to read buffs for updateStackData.');
+            return false;
+        }
 
     let foundBuff = false;
 
@@ -461,6 +492,10 @@ function updateStackData(
     }
 
     return foundBuff;
+    } catch (error) {
+        console.error('Error in updateStackData:', error);
+        return false;
+    }
 }
 
 function updateSimpleStackData(
@@ -789,12 +824,45 @@ function updateRangeAbility(time: number, greater: boolean, abilityName: RangedA
     }
 }
 
-function updateSpell(spellName: 'bloodTithe' | 'glacialEmbrace', active: number) {
-    store.dispatch(MagicGaugeSlice.actions.updateSpell({
-        spellName,
-        spell: { active: !!active },
-    }));
+
+
+function updateSpell(spellName: 'bloodTithe' | 'glacialEmbrace' | 'corruption', time: number) {
+    try {
+        const magicState = store.getState().magic;
+        const spells = magicState.spells;
+        
+        // Validate that the spell exists in state
+        if (!spells || !spells[spellName]) {
+            console.warn(`Spell ${spellName} not found in state, skipping update`);
+            return;
+        }
+        
+        const currentState = spells[spellName];
+        
+        if (time > 0) {
+            store.dispatch(MagicGaugeSlice.actions.updateSpell({
+                spellName,
+                spell: { 
+                    active: true,
+                    time: time,
+                },
+            }));
+        } else {
+            store.dispatch(MagicGaugeSlice.actions.updateSpell({
+                spellName,
+                spell: { 
+                    active: false,
+                    time: 0,
+                },
+            }));
+        }
+    } catch (error) {
+        console.error(`Error updating spell ${spellName}:`, error);
+        // Continue execution even if spell update fails
+    }
 }
+
+
 
 function changeCombatStyles(combatStyle: CombatStyle) {
     const { gaugeData } = store.getState();

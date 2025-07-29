@@ -1,4 +1,4 @@
-import { Position, Ability, StackingPlayerBuff } from './common';
+import { Position, Ability, StackingTimedPlayerBuff } from './common';
 
 export enum ActiveSpells {
     Exsanguinate = 1,
@@ -11,8 +11,9 @@ export type ActiveSpellNames = keyof typeof ActiveSpells;
 export type Spells = {
     isActiveOverlay: boolean;
     activeSpell: number;
-    bloodTithe: StackingPlayerBuff;
-    glacialEmbrace: StackingPlayerBuff;
+    bloodTithe: StackingTimedPlayerBuff;
+    glacialEmbrace: StackingTimedPlayerBuff;
+    corruption: StackingTimedPlayerBuff;
 };
 
 export type MagicGauge = {

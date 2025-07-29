@@ -37,7 +37,7 @@ export const renderSettings = () => {
             `,
         )
         .addSeperator()
-        .addHeader('h2', 'Job Gauges ' + sauce.getVersion())
+        .addHeader('h2', 'test ')
         .addSeperator()
         .addHeader('h3', 'Change Active Gauge')
         .addButton(

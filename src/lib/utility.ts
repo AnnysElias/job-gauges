@@ -96,6 +96,9 @@ const overlays = [
     'PerfectEquilibrium',
     'SplitSoul',
     'Spells',
+    'SpellBar_bloodTithe',
+    'SpellBar_glacialEmbrace',
+    'SpellBar_corruption',
 ];
 
 export function freezeOverlays(): void {
@@ -159,6 +162,13 @@ export function clearTextOverlays(): void {
 
     alt1.overLayClearGroup('Spell_Text');
     alt1.overLayRefreshGroup('Spell_Text');
+
+    alt1.overLayClearGroup('SpellBar_bloodTithe');
+    alt1.overLayRefreshGroup('SpellBar_bloodTithe');
+    alt1.overLayClearGroup('SpellBar_glacialEmbrace');
+    alt1.overLayRefreshGroup('SpellBar_glacialEmbrace');
+    alt1.overLayClearGroup('SpellBar_corruption');
+    alt1.overLayRefreshGroup('SpellBar_corruption');
 
     alt1.overLayClearGroup('DeathsSwifness_Text');
     alt1.overLayRefreshGroup('DeathsSwifness_Text');

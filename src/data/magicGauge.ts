@@ -10,7 +10,8 @@ export const magic_gauge: MagicGauge = {
         isActiveOverlay: true,
         activeSpell: 0,
         bloodTithe: {
-            name: 'Blood_Tithe',
+            time: 20,
+            name: 'Incite_Fear',
             isActiveOverlay: true,
             active: true,
             stacks: 0,
@@ -34,26 +35,52 @@ export const magic_gauge: MagicGauge = {
             },
         },
         glacialEmbrace: {
-            name: 'Glacial_Embrace',
+            time: 20,
+            name: 'Incite_Fear',
             isActiveOverlay: true,
             active: true,
             stacks: 0,
             position: {
                 active_orientation: {
                     x: 68,
-                    y: 12,
+                    y: 60,
                 },
                 grouped: {
                     x: 68,
-                    y: 12,
+                    y: 60,
                 },
                 split: {
                     x: 68,
-                    y: 12,
+                    y: 60,
                 },
                 reverse_split: {
                     x: 68,
-                    y: 12,
+                    y: 60,
+                },
+            },
+        },
+        corruption: {
+            time: 20,
+            name: 'Corruption',
+            isActiveOverlay: true,
+            active: true,
+            stacks: 0,
+            position: {
+                active_orientation: {
+                    x: 68,
+                    y: 108,
+                },
+                grouped: {
+                    x: 68,
+                    y: 108,
+                },
+                split: {
+                    x: 68,
+                    y: 108,
+                },
+                reverse_split: {
+                    x: 68,
+                    y: 108,
                 },
             },
         },

@@ -1,7 +1,7 @@
 import { ActiveSpells, MagicGauge } from '../../types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { magic_gauge } from '../../data/magicGauge';
-import { Ability, Position, StackingPlayerBuff } from '../../types/common';
+import { Ability, Position, StackingTimedPlayerBuff } from '../../types/common';
 import { Abilities } from '../../lib/util/ability-helpers';
 
 export type MagicGaugeState = MagicGauge;
@@ -11,7 +11,7 @@ const initialState: MagicGaugeState = {
 };
 
 export type MagicPropertyAbilities = 'soulfire' | 'instability' | 'tsunami' | 'sunshine';
-export type MagicSpells = 'bloodTithe' | 'glacialEmbrace';
+export type MagicSpells = 'bloodTithe' | 'glacialEmbrace' | 'corruption';
 export type MagicAbilities = Extract<Abilities, 'Sunshine' | 'Soulfire' | 'Tsunami' | 'Instability'>
 
 export const MagicGaugeSlice = createSlice({
@@ -41,7 +41,7 @@ export const MagicGaugeSlice = createSlice({
         }),
         updateSpell: (state, action: PayloadAction<{
             spellName: MagicSpells,
-            spell: Partial<StackingPlayerBuff>
+            spell: Partial<StackingTimedPlayerBuff>
         }>) => ({
             ...state,
             spells: {

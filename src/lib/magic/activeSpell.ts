@@ -53,6 +53,7 @@ export async function spellsOverlay() {
     if (!spells.isActiveOverlay) {
         return;
     }
+    
 
     await spellImages.promise;
 

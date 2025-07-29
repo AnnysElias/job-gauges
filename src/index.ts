@@ -29,6 +29,7 @@ import { notes } from './patchnotes';
 import { startVersionChecking } from './a1sauce/Patches/serverCheck';
 import { sunshineOverlay } from './lib/magic/sunshine';
 import { spellsOverlay } from './lib/magic/activeSpell';
+import { spellBarsOverlay } from './lib/magic/spellBars';
 import { fsoaOverlay } from './lib/magic/instability';
 import { tsunamiOverlay } from './lib/magic/tsunami';
 import { deathsSwiftnessOverlay } from './lib/ranged/deathsSwiftness';
@@ -51,30 +52,35 @@ sauce.createSettings();
 const errorLogger = new LogError();
 
 async function renderOverlays() {
-    const { gaugeData } = store.getState();
-    await readEnemy();
+    try {
+        const { gaugeData } = store.getState();
+        await readEnemy();
 
-    if (!gaugeData.isInCombat && !gaugeData.updatingOverlayPosition) {
-        return utility.clearTextOverlays();
-    }
+        if (!gaugeData.isInCombat && !gaugeData.updatingOverlayPosition) {
+            return utility.clearTextOverlays();
+        }
 
-    await readBuffs();
-    switch (gaugeData.combatStyle) {
+        await readBuffs();
+        switch (gaugeData.combatStyle) {
 
-        case CombatStyle.necromancy:
-            await renderNecromancyOverlays();
-            break;
+            case CombatStyle.necromancy:
+                await renderNecromancyOverlays();
+                break;
 
-        case CombatStyle.magic:
-            await renderMagicOverlays();
-            break;
+            case CombatStyle.magic:
+                await renderMagicOverlays();
+                break;
 
-        case CombatStyle.ranged:
-            await renderRangedOverlays();
-            break;
+            case CombatStyle.ranged:
+                await renderRangedOverlays();
+                break;
 
-        case CombatStyle.melee:
-            break;
+            case CombatStyle.melee:
+                break;
+        }
+    } catch (error) {
+        console.error('Error in renderOverlays:', error);
+        // Continue rendering even if there's an error
     }
 }
 
@@ -88,11 +94,7 @@ async function renderNecromancyOverlays() {
 }
 
 async function renderMagicOverlays() {
-    await sunshineOverlay();
-    await spellsOverlay();
-    await fsoaOverlay();
-    await tsunamiOverlay();
-    await soulfireOverlay();
+    await spellBarsOverlay();
 }
 
 async function renderRangedOverlays() {
