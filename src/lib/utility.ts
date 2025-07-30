@@ -141,14 +141,14 @@ export function clearTextOverlays(): void {
     alt1.overLayRefreshGroup('LivingDeath_Cooldown_Text');
 
     alt1.overLayClearGroup('Sunshine_Text');
-   // alt1.overLayRefreshGroup('Sunshine_Text');
+    alt1.overLayRefreshGroup('Sunshine_Text');
     alt1.overLayClearGroup('Sunshine_Cooldown_Text');
-    //alt1.overLayRefreshGroup('Sunshine_Cooldown_Text');
+    alt1.overLayRefreshGroup('Sunshine_Cooldown_Text');
 
     alt1.overLayClearGroup('Instability_Text');
-   // alt1.overLayRefreshGroup('Instability_Text');
+    alt1.overLayRefreshGroup('Instability_Text');
     alt1.overLayClearGroup('Instability_Cooldown_Text');
-    //alt1.overLayRefreshGroup('Instability_Cooldown_Text');
+    alt1.overLayRefreshGroup('Instability_Cooldown_Text');
 
     alt1.overLayClearGroup('Soulfire_Text');
     alt1.overLayRefreshGroup('Soulfire_Text');
@@ -156,9 +156,9 @@ export function clearTextOverlays(): void {
     alt1.overLayRefreshGroup('Soulfire_Cooldown_Text');
 
     alt1.overLayClearGroup('Tsunami_Text');
-   // alt1.overLayRefreshGroup('Tsunami_Text');
+    alt1.overLayRefreshGroup('Tsunami_Text');
     alt1.overLayClearGroup('Tsunami_Cooldown_Text');
-    //alt1.overLayRefreshGroup('Tsunami_Cooldown_Text');
+    alt1.overLayRefreshGroup('Tsunami_Cooldown_Text');
 
     alt1.overLayClearGroup('Spell_Text');
     alt1.overLayRefreshGroup('Spell_Text');

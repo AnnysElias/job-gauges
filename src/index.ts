@@ -1,5 +1,5 @@
 import * as utility from './lib/utility';
-import { alarmLoop, forceClearOverlays } from './lib/utility';
+import { alarmLoop, forceClearOverlays, clearTextOverlays } from './lib/utility';
 import { CombatStyle } from './types';
 
 // General Purpose
@@ -84,6 +84,27 @@ async function renderNecromancyOverlays() {
 }
 
 async function renderMagicOverlays() {
+    // Force clear any existing magic ability overlays that shouldn't be rendered
+    alt1.overLayClearGroup('Sunshine_Text');
+    alt1.overLayRefreshGroup('Sunshine_Text');
+    alt1.overLayClearGroup('Sunshine_Cooldown_Text');
+    alt1.overLayRefreshGroup('Sunshine_Cooldown_Text');
+    
+    alt1.overLayClearGroup('Instability_Text');
+    alt1.overLayRefreshGroup('Instability_Text');
+    alt1.overLayClearGroup('Instability_Cooldown_Text');
+    alt1.overLayRefreshGroup('Instability_Cooldown_Text');
+    
+    alt1.overLayClearGroup('Soulfire_Text');
+    alt1.overLayRefreshGroup('Soulfire_Text');
+    alt1.overLayClearGroup('Soulfire_Cooldown_Text');
+    alt1.overLayRefreshGroup('Soulfire_Cooldown_Text');
+    
+    alt1.overLayClearGroup('Tsunami_Text');
+    alt1.overLayRefreshGroup('Tsunami_Text');
+    alt1.overLayClearGroup('Tsunami_Cooldown_Text');
+    alt1.overLayRefreshGroup('Tsunami_Cooldown_Text');
+    
     await spellBarsOverlay();
 }
 
@@ -167,6 +188,9 @@ export async function startApp() {
      * the state of alarms and what needs to play or not.
      */
     alarmLoop();
+
+    // Force clear all overlays at startup to ensure clean state
+    clearTextOverlays();
 
     // Apparently setting GroupZIndex is a pretty expensive call to do in the loop - so let's only do it once
     alt1.overLaySetGroupZIndex('Undead_Army_Text', 1);

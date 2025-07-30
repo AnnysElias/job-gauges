@@ -3,8 +3,8 @@ import { MagicGauge } from '../types';
 export const magic_gauge: MagicGauge = {
     isInCombat: false,
     position: {
-        x: 50,
-        y: 50,
+        x: 0,
+        y: 0,
     },
     spells: {
         isActiveOverlay: true,
@@ -86,8 +86,8 @@ export const magic_gauge: MagicGauge = {
         },
     },
     instability: {
-        isActiveOverlay: true,
-        active: true,
+        isActiveOverlay: false,
+        active: false,
         time: 0,
         isOnCooldown: false,
         cooldownDuration: 0,
@@ -111,7 +111,7 @@ export const magic_gauge: MagicGauge = {
         },
     },
     soulfire: {
-        isActiveOverlay: true,
+        isActiveOverlay: false,
         active: false,
         time: 0,
         isOnCooldown: false,
@@ -136,8 +136,8 @@ export const magic_gauge: MagicGauge = {
         },
     },
     tsunami: {
-        isActiveOverlay: true,
-        active: true,
+        isActiveOverlay: false,
+        active: false,
         time: 0,
         isOnCooldown: false,
         cooldownDuration: 0,
@@ -161,8 +161,8 @@ export const magic_gauge: MagicGauge = {
         },
     },
     sunshine: {
-        isActiveOverlay: true,
-        active: true,
+        isActiveOverlay: false,
+        active: false,
         time: 0,
         isOnCooldown: false,
         cooldownDuration: 0,

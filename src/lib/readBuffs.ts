@@ -735,7 +735,7 @@ function updateMagicAbility(time: number, greater: boolean, abilityName: MagicAb
             }));
 
             // We don't want these abilities to trigger the cooldown overlay.
-            if (abilityName === 'Soulfire') {
+            if (abilityName === 'Soulfire' || abilityName === 'Sunshine' || abilityName === 'Tsunami' || abilityName === 'Instability') {
                 return;
             }
 
