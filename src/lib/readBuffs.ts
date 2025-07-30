@@ -342,7 +342,7 @@ export async function readBuffs() {
                 updateBuffData(
                     buffReader,
                     buffsImages.corruption,
-                    50,
+                    150,
                     (time) => updateSpell('corruption', time),
                     false,
                 );

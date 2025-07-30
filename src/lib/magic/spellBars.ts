@@ -95,10 +95,10 @@ export async function spellBarsOverlay() {
             active: false,
             stacks: 0,
             position: {
-                active_orientation: { x: 68, y: 68 },
-                grouped: { x: 68, y: 68 },
-                split: { x: 68, y: 68 },
-                reverse_split: { x: 68, y: 68 },
+                active_orientation: { x: 0, y: 68 },
+                grouped: { x: 0, y: 68 },
+                split: { x: 0, y: 68 },
+                reverse_split: { x: 0, y: 68 },
             },
         };
         displaySpellBar('corruption', defaultCorruption, magic.position);
@@ -119,14 +119,14 @@ function displaySpellBar(spellName: 'bloodTithe' | 'glacialEmbrace' | 'corruptio
     // Hardcoded positions for spell bars
     let finalX, finalY;
     if (spellName === 'bloodTithe') {
-        finalX = position.x + 68;
+        finalX = position.x + 0;
         finalY = position.y + 12;
     } else if (spellName === 'glacialEmbrace') {
-        finalX = position.x + 68;
+        finalX = position.x + 0;
         finalY = position.y + 40;
     } else {
         // corruption
-        finalX = position.x + 68;
+        finalX = position.x + 0;
         finalY = position.y + 68;
     }
     

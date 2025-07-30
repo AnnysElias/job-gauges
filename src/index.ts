@@ -27,15 +27,10 @@ import { appName, majorVersion, minorVersion, patchVersion, versionUrl } from '.
 import { Patches } from './a1sauce/Patches/patchNotes';
 import { notes } from './patchnotes';
 import { startVersionChecking } from './a1sauce/Patches/serverCheck';
-import { sunshineOverlay } from './lib/magic/sunshine';
-import { spellsOverlay } from './lib/magic/activeSpell';
 import { spellBarsOverlay } from './lib/magic/spellBars';
-import { fsoaOverlay } from './lib/magic/instability';
-import { tsunamiOverlay } from './lib/magic/tsunami';
 import { deathsSwiftnessOverlay } from './lib/ranged/deathsSwiftness';
 import { crystalRainOverlay } from './lib/ranged/crystalRain';
 import { peOverlay } from './lib/ranged/perfectEquilibrium';
-import { soulfireOverlay } from './lib/magic/soulfire';
 import { rangedSplitSoulOverlay } from './lib/ranged/splitSoul';
 import { LogError } from './a1sauce/Error/logError';
 import { GaugeDataSlice } from './state/gauge-data/gauge-data.state';
@@ -85,12 +80,7 @@ async function renderOverlays() {
 }
 
 async function renderNecromancyOverlays() {
-    await livingDeathOverlay();
-    await conjureOverlay();
-    await soulsOverlay();
-    await necrosisOverlay();
-    await incantationsOverlay();
-    await bloatOverlay();
+
 }
 
 async function renderMagicOverlays() {
@@ -182,15 +172,6 @@ export async function startApp() {
     alt1.overLaySetGroupZIndex('Undead_Army_Text', 1);
     alt1.overLaySetGroupZIndex('LivingDeath_Text', 1);
     alt1.overLaySetGroupZIndex('LivingDeath_Cooldown_Text', 1);
-
-    alt1.overLaySetGroupZIndex('Sunshine_Text', 1);
-    alt1.overLaySetGroupZIndex('Sunshine_Cooldown_Text', 1);
-    alt1.overLaySetGroupZIndex('Instability_Text', 1);
-    alt1.overLaySetGroupZIndex('Instability_Cooldown_Text', 1);
-    alt1.overLaySetGroupZIndex('Tsunami_Text', 1);
-    alt1.overLaySetGroupZIndex('Tsunami_Cooldown_Text', 1);
-    alt1.overLaySetGroupZIndex('Soulfire_Text', 1);
-    alt1.overLaySetGroupZIndex('Soulfire_Cooldown_Text', 1);
 
     alt1.overLaySetGroupZIndex('DeathsSwiftness_Text', 1);
     alt1.overLaySetGroupZIndex('DeathsSwiftness_Cooldown_Text', 1);
